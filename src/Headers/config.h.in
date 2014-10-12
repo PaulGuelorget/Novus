@@ -1,0 +1,2 @@
+#define Novus_VERSION_MAJOR @Novus_VERSION_MAJOR@
+#define Novus_VERSION_MINOR @Novus_VERSION_MINOR@
