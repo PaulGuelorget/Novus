@@ -1,7 +1,7 @@
 #ifndef BOOK_GAME_HPP
 #define BOOK_GAME_HPP
 
-#include "map.hpp"
+#include "world.hpp"
 #include "stringhelpers.hpp"
 
 #include <SFML/System/Time.hpp>
@@ -24,15 +24,14 @@ class Game : private sf::NonCopyable
 		void					render();
 		void					updateStatistics(sf::Time elapsedTime);	
 		void					handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
-		void draw_map();
-		void draw_test();
 
 
 	private:
 		static const sf::Time	TimePerFrame;
 
 		sf::RenderWindow		mWindow;
-		Map                     mMap;
+        World                   mWorld;
+		//Map                     mMap;
 	  	sf::Font				mFont;
 		sf::Text				mStatisticsText;
 		sf::Time				mStatisticsUpdateTime;

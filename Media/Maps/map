@@ -1,18 +1,18 @@
 29 29
 
-G T S T T T T T T O O O O O O O O O O O O O O O O O O O O O
-T T T T T T T T T O O O O O O O O O O O O O O O O O O O O O
-T G G G G G G G G O O O O O O O O O O O O O O O O O O O O O
-G G G G G G G G G O O O O O O O O O O O O O O O O O O O O O
-T T T T T T S S S O O O O O O O O O O O O O O O O O O O O O
-S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O
-S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O
-S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O
-S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O
-S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O
-S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O
-S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O
-S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O
+G T S T T T T T T O O O O T O O O O O O O O O O O O O O O O
+T T T T T T T T T O O O O T O O O O O O O O O O O O O O O O
+T G G G G G G G G O O O O T O O O O O O O O O O O O O O O O
+G G G G G G G G G O O O O T O O O O O O O O O O O O O O O O
+T T T T T T G G G O O O O T O O O O O O O O O O O O O O O O
+S S S S S S S S S O O O O T O O O O O O O O O O O O O O O O
+S S S S S S S S S O O O O T O O O O O O O O O O O O O O O O
+S S S S T S S S S O O O O T O O T O O O O O O O O O O O O O
+S S S S T S S S S O O O O T O O T O O O O O O O O O O O O O
+S S S S T S S S S O O O O T T T T O O O O O O O O O O O O O
+S S T T S S S S S O O O O O O O O O O O O O O O O O O O O O
+S S S T S S S S S O O O O O O O O O O O O O O O O O O O O O
+S S T T S S S S S O O O O O O O O O O O O O O O O O O O O O
 S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O
 S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O
 S S S S S S S S S O O O O O O O O O O O O O O O O O O O O O

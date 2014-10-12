@@ -3,8 +3,9 @@
 
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
-Game::Game(): mWindow(sf::VideoMode(900, 900), "Novus", sf::Style::Close)
-, mMap(mWindow, "../../Media/Maps/map")
+Game::Game(): mWindow(sf::VideoMode(800, 600), "Novus", sf::Style::Resize)
+/*, mMap(mWindow, "../../Media/Maps/map")*/
+, mWorld(mWindow, "../../Media/Maps/map")
 , mFont()
 , mStatisticsText()
 , mStatisticsUpdateTime()
@@ -68,7 +69,9 @@ void Game::render()
 {
 	mWindow.clear();
 	mWindow.setView(mWindow.getDefaultView());
-	mMap.draw();
+    mWorld.draw();
+    
+	//mMap.draw();
 	mWindow.draw(mStatisticsText);
 	mWindow.display();
 }
@@ -91,19 +94,4 @@ void Game::updateStatistics(sf::Time elapsedTime)
 
 void Game::handlePlayerInput(sf::Keyboard::Key, bool)
 {
-}
-
-
-void Game::draw_map()
-{
-	for (int i=0; i<mMap.get_m_largeur(); i++)
-	{
-		for (int j=0; j<mMap.get_m_hauteur(); j++)
-		{
-			sf::Sprite sprite;
-			sprite.setTexture(mMap.MAP_to_texture((mMap.get_map_matrix()[i*mMap.get_m_largeur()+j])));
-			sprite.setPosition(30*i,30*j);
-			mWindow.draw(sprite);
-		}
-	}
 }
