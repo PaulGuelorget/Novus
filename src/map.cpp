@@ -39,6 +39,10 @@ mWindow(window)
 		{
 		// Handle loading error
 		}
+		if (!Tmwater.loadFromFile("../../Media/Images/water.png"))
+		{
+		// Handle loading error
+		}
 	}
 	else
 	{
@@ -74,6 +78,8 @@ MAP map_return(char element)
 			return Grass;
 		case 'S':
 			return Sand;
+		case 'W':
+			return Water;
 		default:
 			return Grass;
 	}
@@ -89,6 +95,8 @@ char ground_from_map(MAP element_map)
 			return 'G';
 		case Sand:
 			return 'S';
+		case Water:
+			return 'W';
 		default:
 			return 'G';
 	}
@@ -117,6 +125,8 @@ sf::Texture Map::MAP_to_texture(MAP map)
 			return Tmgrass;
 		case Sand:
 			return Tmsand;
+		case Water:
+			return Tmwater;
 		default:
 			return Tmgrass;
 	}
@@ -132,6 +142,8 @@ sf::Sprite Map::MAP_to_sprite(MAP map)
 			return Smgrass;
 		case Sand:
 			return Smsand;
+		case Water:
+			return Smwater;
 		default:
 			return Smgrass;
 	}
@@ -157,6 +169,7 @@ void Map::draw()
 	Smgrass.setTexture(Tmgrass);
 	Smsand.setTexture(Tmsand);
 	Smtree.setTexture(Tmtree);
+	Smwater.setTexture(Tmwater);
 
 	for (int i=0; i<m_largeur; i++)
 	{
@@ -175,6 +188,10 @@ void Map::draw()
 				case Tree:
 					Smtree.setPosition(30*j,30*i);
 					mWindow.draw(Smtree);
+					break;
+				case Water:
+					Smwater.setPosition(30*j,30*i);
+					mWindow.draw(Smwater);
 					break;
 				default:
 					Smgrass.setPosition(30*j,30*i);
