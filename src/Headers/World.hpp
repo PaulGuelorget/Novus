@@ -2,6 +2,7 @@
 #define BOOK_WORLD_HPP
 
 #include "map.hpp"
+#include "character.hpp"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -22,6 +23,8 @@ class World : private sf::NonCopyable
 		explicit							World(sf::RenderWindow& window, string Filename);
 		void								update(sf::Time dt);
 		void								draw();
+		void 								handle(sf::Keyboard::Key key, bool b);
+
 
 
 	private:
@@ -41,6 +44,7 @@ class World : private sf::NonCopyable
 	private:
 		sf::RenderWindow&					mWindow;
         Map                                 mMap;
+        Character							mCharacter;
 		//sf::View							mWorldView;
         //TextureHolder						mTextures;
 

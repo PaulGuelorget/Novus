@@ -5,6 +5,7 @@
 World::World(sf::RenderWindow& window, string Filename)
 : mWindow(window)
 , mMap(window, Filename)
+, mCharacter(window)
 /*, mWorldView(window.getDefaultView())
 , mTextures()
 , mSceneGraph()
@@ -48,6 +49,12 @@ void World::update(sf::Time dt)
 void World::draw()
 {
     mMap.draw();
+    mCharacter.draw();
+}
+
+void World::handle(sf::Keyboard::Key key, bool b)
+{
+	mCharacter.set_character(key, b);
 }
 
 void World::loadTextures()

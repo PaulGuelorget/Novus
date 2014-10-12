@@ -70,8 +70,6 @@ void Game::render()
 	mWindow.clear();
 	mWindow.setView(mWindow.getDefaultView());
     mWorld.draw();
-    
-	//mMap.draw();
 	mWindow.draw(mStatisticsText);
 	mWindow.display();
 }
@@ -92,6 +90,7 @@ void Game::updateStatistics(sf::Time elapsedTime)
 	}
 }
 
-void Game::handlePlayerInput(sf::Keyboard::Key, bool)
+void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 {
+	mWorld.handle(key, isPressed);
 }
