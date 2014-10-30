@@ -3,9 +3,8 @@
 
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
-Game::Game(): mWindow(sf::VideoMode(800, 600), "Novus", sf::Style::Resize)
-/*, mMap(mWindow, "../../Media/Maps/map")*/
-, mWorld(mWindow, "../../Media/Maps/map")
+Game::Game(sf::RenderWindow& window): mWindow(window)
+, mWorld(mWindow, "../../Media/Maps/map2")
 , mFont()
 , mStatisticsText()
 , mStatisticsUpdateTime()
@@ -76,6 +75,7 @@ void Game::render()
 
 void Game::updateStatistics(sf::Time elapsedTime)
 {
+	/*
 	mStatisticsUpdateTime += elapsedTime;
 	mStatisticsNumFrames += 1;
 
@@ -83,11 +83,14 @@ void Game::updateStatistics(sf::Time elapsedTime)
 	{
 		mStatisticsText.setString(
 			"Frames / Second = " + toString(mStatisticsNumFrames) + "\n" +
-			"Time / Update = " + toString(mStatisticsUpdateTime.asMicroseconds() / mStatisticsNumFrames) + "us");
+			"Time / Update = " + toString(mStatisticsUpdateTime.asMicroseconds() / mStatisticsNumFrames) + "us"
+			)
 							 
 		mStatisticsUpdateTime -= sf::seconds(1.0f);
 		mStatisticsNumFrames = 0;
 	}
+	*/
+	mWorld.updateStatistics(elapsedTime);
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)

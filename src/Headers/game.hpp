@@ -14,7 +14,7 @@
 class Game : private sf::NonCopyable
 {
 	public:
-								Game();
+								Game(sf::RenderWindow& window);
 		void					run();
 		
 
@@ -29,9 +29,8 @@ class Game : private sf::NonCopyable
 	private:
 		static const sf::Time	TimePerFrame;
 
-		sf::RenderWindow		mWindow;
+		sf::RenderWindow&		mWindow;
         World                   mWorld;
-		//Map                     mMap;
 	  	sf::Font				mFont;
 		sf::Text				mStatisticsText;
 		sf::Time				mStatisticsUpdateTime;
