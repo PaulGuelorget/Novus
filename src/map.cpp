@@ -57,7 +57,7 @@ Map::~Map()
 	free(map_matrix);
 }
 
-void Map::reset_filename(std::string new_filename)
+void Map::reset_filename(std::string new_filename, int new_x_tl, int new_y_tl)
 {
 	mFilename = new_filename;
 	ifstream File(mFilename);
@@ -87,14 +87,13 @@ void Map::reset_filename(std::string new_filename)
 	{
 		cout << "ERROR : Impossible to find the file." << endl;
 	}
-	x_tl=0;
-	y_tl=0;
+	x_tl=new_x_tl;
+	y_tl=new_y_tl;
 
-	// To add: ennemies reinitialization here when they will exist inchALLAH
+	// To add: ennemies reinitialization here when they will exist
 }
 void Map::print_map()
 {
-	//cout << m_largeur << " de large et " << m_hauteur << " de haut " <<endl;
 	for (int i=0; i<m_hauteur; i++)
 	{
 		for (int j=0; j<m_largeur; j++)
@@ -212,7 +211,7 @@ bool name_to_change_level(MAP value)
 		{
 			return grounds[i].change_level;
 		}
-	}	
+	}
 }
 void load_textures()
 {

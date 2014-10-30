@@ -13,6 +13,7 @@ mMap(map)
 	y=HEIGHT/2;
 	v=30;
 	life=100;
+	mana=100;
 }
 
 void Character::draw()
@@ -357,12 +358,12 @@ void Character::character_data(sf::Keyboard::Key key, bool b)
 		int current_x = get_x();
 		int current_y = get_y();
 
-		mMap.set_x_tl(name_to_x_tl(mMap.get_elem_by_in_game_coordinates(current_x_tl+x+WIDTH_CHARACTER/2, current_y_tl+y)));
-		mMap.set_y_tl(name_to_y_tl(mMap.get_elem_by_in_game_coordinates(current_x_tl+x+WIDTH_CHARACTER/2, current_y_tl+y)));
-		set_x(name_to_x(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)));
-		set_y(name_to_y(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)));
 		mMap.reset_filename(name_to_adress_of_other_level(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)));
 
+		mMap.set_x_tl(name_to_x_tl(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)));
+		mMap.set_y_tl(name_to_y_tl(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)));
+		x=name_to_x(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y));
+		y=name_to_y(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y));
 		// Le problème c'est que le personnage n'apparaît pas aux bonnes coordonnées.
 		// Je propose le système suivant à mettre en oeuvre dès que possible :
 		// Faire un seul "hole" mais lui ajouter un identifiant de transporteur au lieu d'une adresse
