@@ -4,7 +4,7 @@
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 Game::Game(sf::RenderWindow& window): mWindow(window)
-, mWorld(mWindow, "../../Media/Maps/map2")
+, mWorld(mWindow, "../../Media/Maps/map")
 , mFont()
 , mStatisticsText()
 , mStatisticsUpdateTime()

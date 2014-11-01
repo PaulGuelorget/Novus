@@ -18,7 +18,7 @@ public:
 	explicit 							Map(sf::RenderWindow& window, std::string Filename);
 										~Map();
 	void 								print_map();
-	void 								reset_filename(string new_filename);
+	void 								reset_filename(string new_filename, int new_x_tl, int new_y_tl);
 	MAP* 								get_map_matrix();
 	int 								get_m_hauteur();
 	int 								get_m_largeur();

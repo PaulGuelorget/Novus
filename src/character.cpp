@@ -353,27 +353,15 @@ void Character::character_data(sf::Keyboard::Key key, bool b)
 	}
 	if (name_to_change_level(mMap.get_elem_by_in_game_coordinates(-mMap.get_x_tl()+x+WIDTH_CHARACTER/2, -mMap.get_y_tl()+y)))
 	{
-		int current_x_tl = mMap.get_x_tl();
-		int current_y_tl = mMap.get_y_tl();
+		int current_x_tl = -mMap.get_x_tl();
+		int current_y_tl = -mMap.get_y_tl();
 		int current_x = get_x();
 		int current_y = get_y();
-
-		mMap.reset_filename(name_to_adress_of_other_level(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)));
-
-		mMap.set_x_tl(name_to_x_tl(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)));
-		mMap.set_y_tl(name_to_y_tl(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)));
 		x=name_to_x(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y));
-		y=name_to_y(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y));
-		// Le problème c'est que le personnage n'apparaît pas aux bonnes coordonnées.
-		// Je propose le système suivant à mettre en oeuvre dès que possible :
-		// Faire un seul "hole" mais lui ajouter un identifiant de transporteur au lieu d'une adresse
-		// Puis réaliser une fonction qui met sur la bonne map et sur les bonnes coordonnées lorsque
-		// l'on lui donne l'identifiant de transporteur
-		// A l'avenir et lorsqu'il y aura des ennemis ou des joueurs en ligne, il faudra spécifier
-		// Un "numéro de map"
-		// De façon à ne récupérer que les données qui nous intéressent à savoir les données de la map courante.
-		// Maintenant j'ai principalement deux travaux devant moi :
-		// 0) Ce que je viens d'écrire
+		y=name_to_y(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y))+30;
+		mMap.reset_filename(name_to_adress_of_other_level(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)),name_to_x_tl(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)),name_to_y_tl(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)));
+		mCurrent_position=FRONT;
+
 		// 1) Améliorer le système de déplacement et faire des vrais pas - Là c'est un peu honteux.
 		// 2) et surtout DOCUMENTER
 		// Idéalement il faudrait commencer par documenter, c'est le plus essentiel si je veux
