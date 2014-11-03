@@ -8,12 +8,16 @@ mMap(map)
 	{
 		// Handle loading error
 	}
-	mCurrent_position=FRONT;
+	mCurrent_position=FRONT4;
 	x=WIDTH/2;
 	y=HEIGHT/2;
 	v=30;
 	life=100;
 	mana=100;
+	was_just_typing_front = false;
+	was_just_typing_back = false;
+	was_just_typing_right = false;
+	was_just_typing_left = false;
 }
 
 void Character::draw()
@@ -49,14 +53,62 @@ sf::IntRect POSITION_to_IntRect(POSITION p)
 {
 	switch (p)
 	{
-		case FRONT:
+		case FRONT1:
 			return sf::IntRect(101,127,16,24);
-		case BACK:
-			return sf::IntRect(457,131,16,24);
-		case RIGHT:
+		case FRONT2:
+			return sf::IntRect(124,128,16,24);
+		case FRONT3:
+			return sf::IntRect(148,129,16,24);
+		case FRONT4:
+			return sf::IntRect(171,129,16,24);
+		case FRONT5:
+			return sf::IntRect(194,130,16,24);
+		case FRONT6:
+			return sf::IntRect(218,128,16,24);
+		case FRONT7:
+			return sf::IntRect(241,127,16,24);
+		case BACK1:
+			return sf::IntRect(456,131,16,24);
+		case BACK2:
+			return sf::IntRect(480,132,16,24);
+		case BACK3:
+			return sf::IntRect(503,133,16,24);
+		case BACK4:
+			return sf::IntRect(527,134,16,24);
+		case BACK5:
+			return sf::IntRect(550,134,16,24);
+		case BACK6:
+			return sf::IntRect(574,132,16,24);
+		case BACK7:
+			return sf::IntRect(595,132,16,24);
+		case RIGHT1:
 			return sf::IntRect(787,128,16,23);
-		case LEFT:
-			return sf::IntRect(764,128,16,23);
+		case RIGHT2:
+			return sf::IntRect(810,127,16,23);
+		case RIGHT3:
+			return sf::IntRect(835,127,16,23);
+		case RIGHT4:
+			return sf::IntRect(857,128,16,23);
+		case RIGHT5:
+			return sf::IntRect(881,127,16,23);
+		case RIGHT6:
+			return sf::IntRect(906,127,16,23);
+		case RIGHT7:
+			return sf::IntRect(906,128,16,23);
+		case LEFT1:
+			return sf::IntRect(929,103,16,23);
+		case LEFT2:
+			return sf::IntRect(905,102,16,23);
+		case LEFT3:
+			return sf::IntRect(880,102,16,23);
+		case LEFT4:
+			return sf::IntRect(858,103,16,23);
+		case LEFT5:
+			return sf::IntRect(834,103,16,23);
+		case LEFT6:
+			return sf::IntRect(810,102,16,23);
+		case LEFT7:
+			return sf::IntRect(787,103,16,23);
 		default:
 			return sf::IntRect(101,127,16,24);
 	}
@@ -70,7 +122,7 @@ void Character::set_current_position(POSITION p)
 void Character::set_character(sf::Keyboard::Key key, bool b)
 {
 	character_data(key,b);
-	if (key==sf::Keyboard::Z && b)
+	if (key==sf::Keyboard::Z)
 	{
 		if (!(Collision()==C_TOP) && !(Collision()==C_TOP_RIGHT) && !(Collision()==C_TOP_LEFT) )
 		{
@@ -360,33 +412,278 @@ void Character::character_data(sf::Keyboard::Key key, bool b)
 		x=name_to_x(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y));
 		y=name_to_y(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y))+30;
 		mMap.reset_filename(name_to_adress_of_other_level(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)),name_to_x_tl(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)),name_to_y_tl(mMap.get_elem_by_in_game_coordinates(current_x_tl+current_x+WIDTH_CHARACTER/2, current_y_tl+current_y)));
-		mCurrent_position=FRONT;
+		mCurrent_position=FRONT4;
 
 		// 1) Améliorer le système de déplacement et faire des vrais pas - Là c'est un peu honteux.
 		// 2) et surtout DOCUMENTER
 		// Idéalement il faudrait commencer par documenter, c'est le plus essentiel si je veux
 		// Repiger quelque chose quand je recommencerai vraiment à coder dans quelques semaines inchALLAH
 	}
-	if (key==sf::Keyboard::Q && b)
+	if (key==sf::Keyboard::Q)
 	{
-		
-		mCurrent_position=LEFT;
+		if (b && !(was_just_typing_front))
+		{
+			clock_front.restart();
+			mCurrent_position=LEFT4;
+		}
+		if (!b)
+		{
+			mCurrent_position=LEFT4;
+			was_just_typing_front=false;
+		}
+		else
+		{
+			was_just_typing_front=true;
+		}
+		if (was_just_typing_front==true && b)
+		{
+
+			if( ((clock_front.getElapsedTime()).asSeconds() <  1.000) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.900))
+			{
+			mCurrent_position=LEFT3;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.900) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.800))
+			{
+			mCurrent_position=LEFT2;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.800) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.700))
+			{
+			mCurrent_position=LEFT1;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.700) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.600))
+			{
+			mCurrent_position=LEFT2;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.600) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.500))
+			{
+			mCurrent_position=LEFT3;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.500) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.400))
+			{
+			mCurrent_position=LEFT5;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.400) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.300))
+			{
+			mCurrent_position=LEFT6;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.300) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.200))
+			{
+			mCurrent_position=LEFT7;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.200) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.100))
+			{
+			mCurrent_position=LEFT6;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.100) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.000))
+			{
+			mCurrent_position=LEFT5;
+			}
+			if ((clock_front.getElapsedTime()).asSeconds() >=  1.000)
+			{
+				clock_front.restart();
+				mCurrent_position=LEFT4;
+			}
+		}
 	}
-	if (key==sf::Keyboard::D && b)
+	if (key==sf::Keyboard::D)
 	{
-		
-		mCurrent_position=RIGHT;
+		if (b && !(was_just_typing_front))
+		{
+			clock_front.restart();
+			mCurrent_position=RIGHT4;
+		}
+		if (!b)
+		{
+			mCurrent_position=RIGHT4;
+			was_just_typing_front=false;
+		}
+		else
+		{
+			was_just_typing_front=true;
+		}
+		if (was_just_typing_front==true && b)
+		{
+
+			if( ((clock_front.getElapsedTime()).asSeconds() <  1.000) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.900))
+			{
+			mCurrent_position=RIGHT3;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.900) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.800))
+			{
+			mCurrent_position=RIGHT2;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.800) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.700))
+			{
+			mCurrent_position=RIGHT1;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.700) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.600))
+			{
+			mCurrent_position=RIGHT2;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.600) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.500))
+			{
+			mCurrent_position=RIGHT3;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.500) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.400))
+			{
+			mCurrent_position=RIGHT5;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.400) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.300))
+			{
+			mCurrent_position=RIGHT6;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.300) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.200))
+			{
+			mCurrent_position=RIGHT7;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.200) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.100))
+			{
+			mCurrent_position=RIGHT6;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.100) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.000))
+			{
+			mCurrent_position=RIGHT5;
+			}
+			if ((clock_front.getElapsedTime()).asSeconds() >=  1.000)
+			{
+				clock_front.restart();
+				mCurrent_position=RIGHT4;
+			}
+		}
 	}
-	if (key==sf::Keyboard::S && b)
+	if (key==sf::Keyboard::S)
 	{
-		
-		mCurrent_position=FRONT;
+		if (b && !(was_just_typing_front))
+		{
+			clock_front.restart();
+			mCurrent_position=FRONT4;
+		}
+		if (!b)
+		{
+			mCurrent_position=FRONT4;
+			was_just_typing_front=false;
+		}
+		else
+		{
+			was_just_typing_front=true;
+		}
+		if (was_just_typing_front==true && b)
+		{
+
+			if( ((clock_front.getElapsedTime()).asSeconds() <  1.000) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.900))
+			{
+			mCurrent_position=FRONT3;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.900) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.800))
+			{
+			mCurrent_position=FRONT2;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.800) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.700))
+			{
+			mCurrent_position=FRONT1;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.700) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.600))
+			{
+			mCurrent_position=FRONT2;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.600) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.500))
+			{
+			mCurrent_position=FRONT3;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.500) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.400))
+			{
+			mCurrent_position=FRONT5;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.400) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.300))
+			{
+			mCurrent_position=FRONT6;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.300) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.200))
+			{
+			mCurrent_position=FRONT7;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.200) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.100))
+			{
+			mCurrent_position=FRONT6;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.100) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.000))
+			{
+			mCurrent_position=FRONT5;
+			}
+			if ((clock_front.getElapsedTime()).asSeconds() >=  1.000)
+			{
+				clock_front.restart();
+				mCurrent_position=FRONT4;
+			}
+		}
 	}
-	if (key==sf::Keyboard::Z && b)
+	if (key==sf::Keyboard::Z)
 	{
 		
-		mCurrent_position=BACK;
-	}	
+		if (b && !(was_just_typing_back))
+		{
+			clock_front.restart();
+			mCurrent_position=BACK4;
+		}
+		if (!b)
+		{
+			mCurrent_position=BACK4;
+			was_just_typing_back=false;
+		}
+		else
+		{
+			was_just_typing_back=true;
+		}
+		if (was_just_typing_back==true && b)
+		{
+
+			if( ((clock_front.getElapsedTime()).asSeconds() <  1.000) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.900))
+			{
+			mCurrent_position=BACK3;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.900) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.800))
+			{
+			mCurrent_position=BACK2;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.800) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.700))
+			{
+			mCurrent_position=BACK1;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.700) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.600))
+			{
+			mCurrent_position=BACK2;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.600) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.500))
+			{
+			mCurrent_position=BACK3;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.500) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.400))
+			{
+			mCurrent_position=BACK5;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.400) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.300))
+			{
+			mCurrent_position=BACK6;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.300) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.200))
+			{
+			mCurrent_position=BACK7;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.200) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.100))
+			{
+			mCurrent_position=BACK6;
+			}
+			if( ((clock_front.getElapsedTime()).asSeconds() <  0.100) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.000))
+			{
+			mCurrent_position=BACK5;
+			}
+			if ((clock_front.getElapsedTime()).asSeconds() >=  1.000)
+			{
+				clock_front.restart();
+				mCurrent_position=BACK4;
+			}
+		}
+	}
 }
 
 void Character::set_x(int new_x)
