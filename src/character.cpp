@@ -4,7 +4,9 @@ Character::Character(sf::RenderWindow& window, Map& map):
 mWindow(window),
 mMap(map)
 {
-	if(!Tcharacter.loadFromFile("../../Media/Images/character.png"))
+	if(!Tcharacter.loadFromFile(
+		#include "../Media/Codes/Character/character_sprite_name"
+		))
 	{
 		// Handle loading error
 	}
@@ -14,10 +16,7 @@ mMap(map)
 	v=30;
 	life=100;
 	mana=100;
-	was_just_typing_front = false;
-	was_just_typing_back = false;
-	was_just_typing_right = false;
-	was_just_typing_left = false;
+	was_just_typing = false;
 }
 
 void Character::draw()
@@ -53,64 +52,7 @@ sf::IntRect POSITION_to_IntRect(POSITION p)
 {
 	switch (p)
 	{
-		case FRONT1:
-			return sf::IntRect(101,127,16,24);
-		case FRONT2:
-			return sf::IntRect(124,128,16,24);
-		case FRONT3:
-			return sf::IntRect(148,129,16,24);
-		case FRONT4:
-			return sf::IntRect(171,129,16,24);
-		case FRONT5:
-			return sf::IntRect(194,130,16,24);
-		case FRONT6:
-			return sf::IntRect(218,128,16,24);
-		case FRONT7:
-			return sf::IntRect(241,127,16,24);
-		case BACK1:
-			return sf::IntRect(456,131,16,24);
-		case BACK2:
-			return sf::IntRect(480,132,16,24);
-		case BACK3:
-			return sf::IntRect(503,133,16,24);
-		case BACK4:
-			return sf::IntRect(527,134,16,24);
-		case BACK5:
-			return sf::IntRect(550,134,16,24);
-		case BACK6:
-			return sf::IntRect(574,132,16,24);
-		case BACK7:
-			return sf::IntRect(595,132,16,24);
-		case RIGHT1:
-			return sf::IntRect(787,128,16,23);
-		case RIGHT2:
-			return sf::IntRect(810,127,16,23);
-		case RIGHT3:
-			return sf::IntRect(835,127,16,23);
-		case RIGHT4:
-			return sf::IntRect(857,128,16,23);
-		case RIGHT5:
-			return sf::IntRect(881,127,16,23);
-		case RIGHT6:
-			return sf::IntRect(906,127,16,23);
-		case RIGHT7:
-			return sf::IntRect(906,128,16,23);
-		case LEFT1:
-			return sf::IntRect(929,103,16,23);
-		case LEFT2:
-			return sf::IntRect(905,102,16,23);
-		case LEFT3:
-			return sf::IntRect(880,102,16,23);
-		case LEFT4:
-			return sf::IntRect(858,103,16,23);
-		case LEFT5:
-			return sf::IntRect(834,103,16,23);
-		case LEFT6:
-			return sf::IntRect(810,102,16,23);
-		case LEFT7:
-			return sf::IntRect(787,103,16,23);
-		default:
-			return sf::IntRect(101,127,16,24);
+		#include "../Media/Codes/Character/character_position_to_place"
 	}
 }
 
@@ -421,198 +363,198 @@ void Character::character_data(sf::Keyboard::Key key, bool b)
 	}
 	if (key==sf::Keyboard::Q)
 	{
-		if (b && !(was_just_typing_front))
+		if (b && !(was_just_typing))
 		{
-			clock_front.restart();
+			clock.restart();
 			mCurrent_position=LEFT4;
 		}
 		if (!b)
 		{
 			mCurrent_position=LEFT4;
-			was_just_typing_front=false;
+			was_just_typing=false;
 		}
 		else
 		{
-			was_just_typing_front=true;
+			was_just_typing=true;
 		}
-		if (was_just_typing_front==true && b)
+		if (was_just_typing==true && b)
 		{
 
-			if( ((clock_front.getElapsedTime()).asSeconds() <  1.000) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.900))
+			if( ((clock.getElapsedTime()).asSeconds() <  1.000) && ( (clock.getElapsedTime()).asSeconds() >= 0.900))
 			{
 			mCurrent_position=LEFT3;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.900) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.800))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.900) && ( (clock.getElapsedTime()).asSeconds() >= 0.800))
 			{
 			mCurrent_position=LEFT2;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.800) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.700))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.800) && ( (clock.getElapsedTime()).asSeconds() >= 0.700))
 			{
 			mCurrent_position=LEFT1;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.700) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.600))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.700) && ( (clock.getElapsedTime()).asSeconds() >= 0.600))
 			{
 			mCurrent_position=LEFT2;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.600) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.500))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.600) && ( (clock.getElapsedTime()).asSeconds() >= 0.500))
 			{
 			mCurrent_position=LEFT3;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.500) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.400))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.500) && ( (clock.getElapsedTime()).asSeconds() >= 0.400))
 			{
 			mCurrent_position=LEFT5;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.400) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.300))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.400) && ( (clock.getElapsedTime()).asSeconds() >= 0.300))
 			{
 			mCurrent_position=LEFT6;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.300) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.200))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.300) && ( (clock.getElapsedTime()).asSeconds() >= 0.200))
 			{
 			mCurrent_position=LEFT7;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.200) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.100))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.200) && ( (clock.getElapsedTime()).asSeconds() >= 0.100))
 			{
 			mCurrent_position=LEFT6;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.100) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.000))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.100) && ( (clock.getElapsedTime()).asSeconds() >= 0.000))
 			{
 			mCurrent_position=LEFT5;
 			}
-			if ((clock_front.getElapsedTime()).asSeconds() >=  1.000)
+			if ((clock.getElapsedTime()).asSeconds() >=  1.000)
 			{
-				clock_front.restart();
+				clock.restart();
 				mCurrent_position=LEFT4;
 			}
 		}
 	}
 	if (key==sf::Keyboard::D)
 	{
-		if (b && !(was_just_typing_front))
+		if (b && !(was_just_typing))
 		{
-			clock_front.restart();
+			clock.restart();
 			mCurrent_position=RIGHT4;
 		}
 		if (!b)
 		{
 			mCurrent_position=RIGHT4;
-			was_just_typing_front=false;
+			was_just_typing=false;
 		}
 		else
 		{
-			was_just_typing_front=true;
+			was_just_typing=true;
 		}
-		if (was_just_typing_front==true && b)
+		if (was_just_typing==true && b)
 		{
 
-			if( ((clock_front.getElapsedTime()).asSeconds() <  1.000) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.900))
+			if( ((clock.getElapsedTime()).asSeconds() <  1.000) && ( (clock.getElapsedTime()).asSeconds() >= 0.900))
 			{
 			mCurrent_position=RIGHT3;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.900) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.800))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.900) && ( (clock.getElapsedTime()).asSeconds() >= 0.800))
 			{
 			mCurrent_position=RIGHT2;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.800) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.700))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.800) && ( (clock.getElapsedTime()).asSeconds() >= 0.700))
 			{
 			mCurrent_position=RIGHT1;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.700) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.600))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.700) && ( (clock.getElapsedTime()).asSeconds() >= 0.600))
 			{
 			mCurrent_position=RIGHT2;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.600) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.500))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.600) && ( (clock.getElapsedTime()).asSeconds() >= 0.500))
 			{
 			mCurrent_position=RIGHT3;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.500) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.400))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.500) && ( (clock.getElapsedTime()).asSeconds() >= 0.400))
 			{
 			mCurrent_position=RIGHT5;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.400) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.300))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.400) && ( (clock.getElapsedTime()).asSeconds() >= 0.300))
 			{
 			mCurrent_position=RIGHT6;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.300) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.200))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.300) && ( (clock.getElapsedTime()).asSeconds() >= 0.200))
 			{
 			mCurrent_position=RIGHT7;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.200) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.100))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.200) && ( (clock.getElapsedTime()).asSeconds() >= 0.100))
 			{
 			mCurrent_position=RIGHT6;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.100) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.000))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.100) && ( (clock.getElapsedTime()).asSeconds() >= 0.000))
 			{
 			mCurrent_position=RIGHT5;
 			}
-			if ((clock_front.getElapsedTime()).asSeconds() >=  1.000)
+			if ((clock.getElapsedTime()).asSeconds() >=  1.000)
 			{
-				clock_front.restart();
+				clock.restart();
 				mCurrent_position=RIGHT4;
 			}
 		}
 	}
 	if (key==sf::Keyboard::S)
 	{
-		if (b && !(was_just_typing_front))
+		if (b && !(was_just_typing))
 		{
-			clock_front.restart();
+			clock.restart();
 			mCurrent_position=FRONT4;
 		}
 		if (!b)
 		{
 			mCurrent_position=FRONT4;
-			was_just_typing_front=false;
+			was_just_typing=false;
 		}
 		else
 		{
-			was_just_typing_front=true;
+			was_just_typing=true;
 		}
-		if (was_just_typing_front==true && b)
+		if (was_just_typing==true && b)
 		{
 
-			if( ((clock_front.getElapsedTime()).asSeconds() <  1.000) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.900))
+			if( ((clock.getElapsedTime()).asSeconds() <  1.000) && ( (clock.getElapsedTime()).asSeconds() >= 0.900))
 			{
 			mCurrent_position=FRONT3;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.900) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.800))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.900) && ( (clock.getElapsedTime()).asSeconds() >= 0.800))
 			{
 			mCurrent_position=FRONT2;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.800) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.700))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.800) && ( (clock.getElapsedTime()).asSeconds() >= 0.700))
 			{
 			mCurrent_position=FRONT1;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.700) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.600))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.700) && ( (clock.getElapsedTime()).asSeconds() >= 0.600))
 			{
 			mCurrent_position=FRONT2;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.600) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.500))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.600) && ( (clock.getElapsedTime()).asSeconds() >= 0.500))
 			{
 			mCurrent_position=FRONT3;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.500) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.400))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.500) && ( (clock.getElapsedTime()).asSeconds() >= 0.400))
 			{
 			mCurrent_position=FRONT5;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.400) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.300))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.400) && ( (clock.getElapsedTime()).asSeconds() >= 0.300))
 			{
 			mCurrent_position=FRONT6;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.300) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.200))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.300) && ( (clock.getElapsedTime()).asSeconds() >= 0.200))
 			{
 			mCurrent_position=FRONT7;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.200) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.100))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.200) && ( (clock.getElapsedTime()).asSeconds() >= 0.100))
 			{
 			mCurrent_position=FRONT6;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.100) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.000))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.100) && ( (clock.getElapsedTime()).asSeconds() >= 0.000))
 			{
 			mCurrent_position=FRONT5;
 			}
-			if ((clock_front.getElapsedTime()).asSeconds() >=  1.000)
+			if ((clock.getElapsedTime()).asSeconds() >=  1.000)
 			{
-				clock_front.restart();
+				clock.restart();
 				mCurrent_position=FRONT4;
 			}
 		}
@@ -620,66 +562,66 @@ void Character::character_data(sf::Keyboard::Key key, bool b)
 	if (key==sf::Keyboard::Z)
 	{
 		
-		if (b && !(was_just_typing_back))
+		if (b && !(was_just_typing))
 		{
-			clock_front.restart();
+			clock.restart();
 			mCurrent_position=BACK4;
 		}
 		if (!b)
 		{
 			mCurrent_position=BACK4;
-			was_just_typing_back=false;
+			was_just_typing=false;
 		}
 		else
 		{
-			was_just_typing_back=true;
+			was_just_typing=true;
 		}
-		if (was_just_typing_back==true && b)
+		if (was_just_typing==true && b)
 		{
 
-			if( ((clock_front.getElapsedTime()).asSeconds() <  1.000) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.900))
+			if( ((clock.getElapsedTime()).asSeconds() <  1.000) && ( (clock.getElapsedTime()).asSeconds() >= 0.900))
 			{
 			mCurrent_position=BACK3;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.900) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.800))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.900) && ( (clock.getElapsedTime()).asSeconds() >= 0.800))
 			{
 			mCurrent_position=BACK2;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.800) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.700))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.800) && ( (clock.getElapsedTime()).asSeconds() >= 0.700))
 			{
 			mCurrent_position=BACK1;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.700) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.600))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.700) && ( (clock.getElapsedTime()).asSeconds() >= 0.600))
 			{
 			mCurrent_position=BACK2;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.600) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.500))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.600) && ( (clock.getElapsedTime()).asSeconds() >= 0.500))
 			{
 			mCurrent_position=BACK3;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.500) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.400))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.500) && ( (clock.getElapsedTime()).asSeconds() >= 0.400))
 			{
 			mCurrent_position=BACK5;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.400) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.300))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.400) && ( (clock.getElapsedTime()).asSeconds() >= 0.300))
 			{
 			mCurrent_position=BACK6;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.300) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.200))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.300) && ( (clock.getElapsedTime()).asSeconds() >= 0.200))
 			{
 			mCurrent_position=BACK7;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.200) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.100))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.200) && ( (clock.getElapsedTime()).asSeconds() >= 0.100))
 			{
 			mCurrent_position=BACK6;
 			}
-			if( ((clock_front.getElapsedTime()).asSeconds() <  0.100) && ( (clock_front.getElapsedTime()).asSeconds() >= 0.000))
+			if( ((clock.getElapsedTime()).asSeconds() <  0.100) && ( (clock.getElapsedTime()).asSeconds() >= 0.000))
 			{
 			mCurrent_position=BACK5;
 			}
-			if ((clock_front.getElapsedTime()).asSeconds() >=  1.000)
+			if ((clock.getElapsedTime()).asSeconds() >=  1.000)
 			{
-				clock_front.restart();
+				clock.restart();
 				mCurrent_position=BACK4;
 			}
 		}
