@@ -1,0 +1,13 @@
+Ground grounds[SIZE_GROUNDS]={
+
+{.enum_name=Sand,.adress="../../Media/Images/sand.png",.identifier_in_map='S',.obstacle=false,.change_velocity=false,.change_level=false},
+{.enum_name=Grass,.adress="../../Media/Images/grass.png",.identifier_in_map='G',.obstacle=false,.change_velocity=false,.change_level=false},
+{.enum_name=Water,.adress="../../Media/Images/water.png",.identifier_in_map='W',.obstacle=true,.change_velocity=false,.change_level=false},
+{.enum_name=Tree,.adress="../../Media/Images/forest.png",.identifier_in_map='T',.obstacle=true,.change_velocity=false,.change_level=false},
+{.enum_name=Grass,.adress="../../Media/Images/grass.png",.identifier_in_map='O',.obstacle=false,.change_velocity=false,.change_level=false},
+{.enum_name=Mountain,.adress="../../Media/Images/mountain.png",.identifier_in_map='M',.obstacle=false,.change_velocity=true,.change_level=false,.new_velocity=3},
+{.enum_name=Flower,.adress="../../Media/Images/flower.png",.identifier_in_map='F',.obstacle=false,.change_velocity=false,.change_level=false},
+{.enum_name=Hole,.adress="../../Media/Images/hole.png",.identifier_in_map='H',.obstacle=false,.change_velocity=false,.change_level=true,.code_of_other_level=1,.adress_of_other_level="../../Media/Maps/map2",.x_tl=0,.y_tl=0,.x=280,.y=240},
+{.enum_name=Hole2,.adress="../../Media/Images/hole.png",.identifier_in_map='I',.obstacle=false,.change_velocity=false,.change_level=true,.code_of_other_level=2,.adress_of_other_level="../../Media/Maps/map",.x_tl=-640,.y_tl=-626,.x=540,.y=310}
+
+};

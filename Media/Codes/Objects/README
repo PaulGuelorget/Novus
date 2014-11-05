@@ -1,0 +1,11 @@
+1:
+Identifier ( M -> Mana, H -> Heart )
+
+2:
+I -> immediate effect
+L -> Later => It goes to the character's inventory
+
+3:
+Effect : mana bonus, health bonus, strength bonus, defense bonus.
+
+Note that it should be written just like I did for the ground : The best is to create a big array containing everything.

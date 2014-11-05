@@ -1,0 +1,11 @@
+HOW TO USE THIS DOCUMENT :
+
+The first element is the total number of objects
+The second element is the map_number of the first object
+The third one is its type H -> Heart
+						  M -> Mana
+The fourth and the fifth ones are its position
+
+Then, the second element starts
+
+The types and their effects have to be defined in Media/Codes/Objects following an other scheme that is defined there.
