@@ -2,7 +2,8 @@
 
 Character::Character(sf::RenderWindow& window, Map& map):
 mWindow(window),
-mMap(map)
+mMap(map),
+mInventory(window)
 {
 	if(!Tcharacter.loadFromFile(
 		#include "../Media/Codes/Character/character_sprite_name"
@@ -16,15 +17,32 @@ mMap(map)
 	v=30;
 	life=100;
 	mana=100;
+	defense=10;
+	attack=50;
+	maxlife=150;
+	maxmana=130;
+	maxdefense=20;
+	maxattack=40;
+	is_attacking = false;
 	was_just_typing = false;
+	is_in_inventory = false;
+	number_of_objects = 0;
+	max_number_of_objects = 50;
 }
 
 void Character::draw()
 {
+
 	Scharacter.setTexture(Tcharacter);
 	Scharacter.setTextureRect(POSITION_to_IntRect(mCurrent_position));
 	Scharacter.setPosition(x,y);
 	mWindow.draw(Scharacter);
+
+	if (is_in_inventory)
+	{
+		mInventory.draw();
+	}
+
 }
 
 int Character::get_mana()
@@ -64,6 +82,7 @@ void Character::set_current_position(POSITION p)
 void Character::set_character(sf::Keyboard::Key key, bool b)
 {
 	character_data(key,b);
+
 	if (key==sf::Keyboard::Z)
 	{
 		if (!(Collision()==C_TOP) && !(Collision()==C_TOP_RIGHT) && !(Collision()==C_TOP_LEFT) )
@@ -284,10 +303,19 @@ void Character::set_character(sf::Keyboard::Key key, bool b)
 			}
 		}
 	}
-	if (key==sf::Keyboard::Return && b)
+
+if (key==sf::Keyboard::Return && b)
 	{
-		mWindow.close();
+		is_in_inventory = !is_in_inventory;
 	}
+if (key==sf::Keyboard::Escape && b)
+{
+	//if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	//{
+    mWindow.close();
+	//}
+}
+
 }
 
 
@@ -336,7 +364,6 @@ COLLISION Character::Collision()
 
 void Character::character_data(sf::Keyboard::Key key, bool b)
 {
-
 	if (name_to_change_velocity(mMap.get_elem_by_in_game_coordinates(-mMap.get_x_tl()+x+WIDTH_CHARACTER/2, -mMap.get_y_tl()+y) ))
 	{
 		v=name_to_new_velocity(mMap.get_elem_by_in_game_coordinates(-mMap.get_x_tl()+x+WIDTH_CHARACTER/2, -mMap.get_y_tl()+y));
@@ -626,8 +653,18 @@ void Character::character_data(sf::Keyboard::Key key, bool b)
 			}
 		}
 	}
+	if (key==sf::Keyboard::RShift)
+	{
+		if (b)
+		{
+			is_attacking = true;
+		}
+		else
+		{
+			is_attacking = false;
+		}
+	} 
 }
-
 void Character::set_x(int new_x)
 {
 	x=new_x;
@@ -635,4 +672,45 @@ void Character::set_x(int new_x)
 void Character::set_y(int new_y)
 {
 	y=new_y;
+}
+
+void Character::dealWithObjects(Object& object)
+{
+	if (name_to_immediate(object.get_name()))
+	{
+		if (life+name_to_health(object.get_name())<maxlife)
+			life+=name_to_health(object.get_name());
+		else
+			life=maxlife;
+		if (mana+name_to_mana(object.get_name())<maxmana)
+			mana+=name_to_mana(object.get_name());
+		else
+			mana=maxmana;
+		if (attack+name_to_attack(object.get_name())<maxattack)
+			attack+=name_to_attack(object.get_name());
+		else
+			attack=maxattack;
+		if (defense+name_to_defense(object.get_name())<maxdefense)
+			defense+=name_to_defense(object.get_name());
+		else
+			defense=maxdefense;
+	}
+	else
+	{
+		if (number_of_objects<max_number_of_objects)
+		{
+			number_of_objects++;
+			mInventory.add(object.get_name());
+		}
+	}
+}
+
+int Character::get_number_of_objects()
+{
+	return number_of_objects;
+}
+
+int Character::get_max_number_of_objects()
+{
+	return max_number_of_objects;
 }

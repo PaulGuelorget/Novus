@@ -33,11 +33,14 @@ public:
 	MAP 								get_left_type;
 	MAP 								get_right_type;
 	void 								draw();
+	int 								get_map_number();
+	void 								set_map_number(int nmap);
 
 private:
 	sf::RenderWindow& 					mWindow;
 	std::string 						mFilename;
 	MAP* 								map_matrix;
+	int 								map_number;
 	int 								m_hauteur;
 	int 								m_largeur;
 	int 								x_tl;

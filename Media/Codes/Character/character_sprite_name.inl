@@ -1,1 +1,0 @@
-"../../Media/Images/character.png"

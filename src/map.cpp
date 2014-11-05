@@ -1,20 +1,6 @@
 #include "Headers/map.hpp"
 
-
-
-Ground grounds[SIZE_GROUNDS]={
-
-{.enum_name=Sand,.adress="../../Media/Images/sand.png",.identifier_in_map='S',.obstacle=false,.change_velocity=false,.change_level=false},
-{.enum_name=Grass,.adress="../../Media/Images/grass.png",.identifier_in_map='G',.obstacle=false,.change_velocity=false,.change_level=false},
-{.enum_name=Water,.adress="../../Media/Images/water.png",.identifier_in_map='W',.obstacle=true,.change_velocity=false,.change_level=false},
-{.enum_name=Tree,.adress="../../Media/Images/forest.png",.identifier_in_map='T',.obstacle=true,.change_velocity=false,.change_level=false},
-{.enum_name=Grass,.adress="../../Media/Images/grass.png",.identifier_in_map='O',.obstacle=false,.change_velocity=false,.change_level=false},
-{.enum_name=Mountain,.adress="../../Media/Images/mountain.png",.identifier_in_map='M',.obstacle=false,.change_velocity=true,.change_level=false,.new_velocity=3},
-{.enum_name=Flower,.adress="../../Media/Images/flower.png",.identifier_in_map='F',.obstacle=false,.change_velocity=false,.change_level=false},
-{.enum_name=Hole,.adress="../../Media/Images/hole.png",.identifier_in_map='H',.obstacle=false,.change_velocity=false,.change_level=true,.code_of_other_level=1,.adress_of_other_level="../../Media/Maps/map2",.x_tl=0,.y_tl=0,.x=280,.y=240},
-{.enum_name=Hole2,.adress="../../Media/Images/hole.png",.identifier_in_map='I',.obstacle=false,.change_velocity=false,.change_level=true,.code_of_other_level=2,.adress_of_other_level="../../Media/Maps/map",.x_tl=-640,.y_tl=-626,.x=540,.y=310}
-
-};
+#include "../Media/Codes/Grounds/map_database"
 
 Map::Map(sf::RenderWindow& window, string Filename):
 mWindow(window)
@@ -25,7 +11,9 @@ mWindow(window)
 	if (File)
 	{
 		// Getting data from a file to a matrix named map_matrix containing information about the ground
-		double d_m_largeur, d_m_hauteur;
+		double d_m_largeur, d_m_hauteur, map_numb;
+		File >> map_numb;
+		map_number=(int)map_numb;
 		File >> d_m_largeur;
 		File >> d_m_hauteur;
 		m_largeur = (int)d_m_largeur;
@@ -64,11 +52,13 @@ void Map::reset_filename(std::string new_filename, int new_x_tl, int new_y_tl)
 	if (File)
 	{
 		// Getting data from a file to a matrix named map_matrix containing information about the ground
-		double d_m_largeur, d_m_hauteur;
+		double d_m_largeur, d_m_hauteur, map_numb;
+		File >> map_numb;
 		File >> d_m_largeur;
 		File >> d_m_hauteur;
 		m_largeur = (int)d_m_largeur;
 		m_hauteur = (int)d_m_hauteur;
+		map_number = (int)map_numb;
 		map_matrix=(MAP*)malloc(m_largeur*m_hauteur*(sizeof(MAP)));
 		for (int i=0; i<m_hauteur; i++)
 		{
@@ -168,6 +158,16 @@ MAP Map::get_elem_by_in_game_coordinates( int x, int y)
 
 }
 
+
+int Map::get_map_number()
+{
+	return map_number;
+}
+
+void Map::set_map_number(int nmap)
+{
+	map_number=nmap;
+}
 
 
 

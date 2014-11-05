@@ -3,9 +3,9 @@
 #include <iostream>
 #include <string>
 #include <SFML/Graphics.hpp>
-#define SIZE_GROUNDS 100
 
-enum MAP { Tree, Grass, Sand, Water, Mountain, Flower, Hole, Hole2 };
+
+#include "../../Media/Codes/Grounds/map_enum_types"
 
 typedef struct Ground Ground;
 
@@ -28,7 +28,6 @@ struct Ground
 	int y;
 };
 
-
 char name_to_identifier( MAP value);
 MAP identifier_to_name(char value);
 bool name_to_obstacle(MAP value);
@@ -42,6 +41,5 @@ int name_to_x_tl(MAP value);
 int name_to_y_tl(MAP value);
 int name_to_x(MAP value);
 int name_to_y(MAP value);
-
 
 #endif
