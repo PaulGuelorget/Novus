@@ -193,5 +193,5 @@ std::string type_to_name(char value)
 		{
 			return Data_Objects[i].name;
 		}
-	}	
+	}
 }

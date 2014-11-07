@@ -1,0 +1,6 @@
+data_PNJ Data_PNJ[NUMBER_PNJ]=
+	{
+		{.name="Empty",.type='E', .velocity=0, .talkative=false,.adress="../../Media/Images/PNJs/empty.png"},
+		{.name="Friend",.type='F', .velocity=5, .talkative=true, .behavior=FRIENDLY, .adress="../../Media/Images/PNJs/friend.png"},
+		{.name="Zombi",.type='Z', .velocity=7, .talkative=false, .behavior=AGGRESSIVE, .adress="../../Media/Images/PNJs/zombi.png"}
+	};

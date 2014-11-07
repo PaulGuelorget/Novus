@@ -1,9 +1,9 @@
 
 data_objects Data_Objects[NUMBER_OBJECT]=
 	{
-		{.name="Empty",.type='E',.adress="../../Media/Images/Objects/empty.png",.description="",.health=0,.mana=0,.attack=0,.defense=0},
-		{.name="Heart",.type='H',.adress="../../Media/Images/Objects/heart.png",.description="This little heart gives you 10 hp",.immediate=true,.type='H',.health=10,.mana=0,.attack=0,.defense=0 },
-		{.name="Mana",.type='M',.adress="../../Media/Images/Objects/mana.png",.description="This little potion gives you 10 mp",.immediate=true,.type='H',.health=0,.mana=10,.attack=0,.defense=0 },
+		{.name="Empty",.type='E',.adress="../../Media/Images/Objects/empty.png",.immediate=true,.description="",.health=0,.mana=0,.attack=0,.defense=0},
+		{.name="Heart",.type='H',.adress="../../Media/Images/Objects/heart.png",.description="This little heart gives you 10 hp",.immediate=true,.health=10,.mana=0,.attack=0,.defense=0 },
+		{.name="Mana",.type='M',.adress="../../Media/Images/Objects/mana.png",.description="This little potion gives you 10 mp",.immediate=true,.health=0,.mana=10,.attack=0,.defense=0 },
 		{.name="Sword",.type='S',.adress="../../Media/Images/Objects/sword.png",.immediate=false,.description="This little sword gives you +10 in attack",.bonus_attack=true,.attack=10}
 
 	};

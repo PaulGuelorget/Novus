@@ -3,7 +3,6 @@
 
 #include "world.hpp"
 #include "stringhelpers.hpp"
-#include "object.hpp"
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -24,8 +23,6 @@ class Game : private sf::NonCopyable
 		void					render();
 		void					updateStatistics(sf::Time elapsedTime);	
 		void					handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
-		void 					dealWithObjects(Object object);
-
 
 
 	private:

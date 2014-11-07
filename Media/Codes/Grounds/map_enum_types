@@ -1,2 +1,2 @@
 #define SIZE_GROUNDS 100
-enum MAP { Tree, Grass, Sand, Water, Mountain, Flower, Hole, Hole2 };
+enum MAP { Sol, Tree, Grass, Sand, Water, Mountain, Flower, Hole, Hole2 };

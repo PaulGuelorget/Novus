@@ -2,6 +2,7 @@
 Ground grounds[SIZE_GROUNDS]={
 
 {.enum_name=Sand,.adress="../../Media/Images/sand.png",.identifier_in_map='S',.obstacle=false,.change_velocity=false,.change_level=false},
+{.enum_name=Sol,.adress="../../Media/Images/ground.png",.identifier_in_map='P',.obstacle=false,.change_velocity=false,.change_level=false},
 {.enum_name=Grass,.adress="../../Media/Images/grass.png",.identifier_in_map='G',.obstacle=false,.change_velocity=false,.change_level=false},
 {.enum_name=Water,.adress="../../Media/Images/water.png",.identifier_in_map='W',.obstacle=true,.change_velocity=false,.change_level=false},
 {.enum_name=Tree,.adress="../../Media/Images/forest.png",.identifier_in_map='T',.obstacle=true,.change_velocity=false,.change_level=false},

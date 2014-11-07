@@ -3,7 +3,9 @@
 
 #include "map.hpp"
 #include "character.hpp"
+#include "pnj.hpp"
 #include "object.hpp"
+
 #include "stringhelpers.hpp"
 #include <SFML/System/Time.hpp>
 #include <SFML/System/NonCopyable.hpp>
@@ -36,6 +38,13 @@ class World : private sf::NonCopyable
 		void 								FillObjects(std::string Filename);
 		void								CharacterAndObjectsInteraction();
 
+		// Concerning PNJs
+
+		void 								updatePNJs();
+		void 								drawPNJs();
+		void 								FillPNJs(std::string Filename);
+		void								CharacterAndPNJsInteraction();
+
 		// Concerning collisions between two "things" in the game
 
 		bool 								is_collising(int x1, int y1, int h1, int w1, int x2, int y2, int h2, int w2);
@@ -50,14 +59,14 @@ class World : private sf::NonCopyable
         Character							mCharacter;
         Object**							mObjects;
         Object  							mObject;
-        // BIDULE TABLEAU DES DIFFERENTS TYPES D'OBJETS AVEC TOUTES LES INFOS DESSUS.
-        //data_objects						mData_Objects[NUMBER_OBJECT];
+        Pnj** 								mPNJs;
+        Pnj 								mPNJ;
         sf::Font							mFont;
 		sf::Text							mStatisticsText;
 		sf::Time							mStatisticsUpdateTime;
 		std::size_t							mStatisticsNumFrames;
 		double 								number_of_objects;
-		//int 								mMapActuelle; à étudier
+		double 								number_of_PNJs;
 };
 
 #endif // BOOK_WORLD_HPP

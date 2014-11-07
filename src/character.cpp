@@ -714,3 +714,8 @@ int Character::get_max_number_of_objects()
 {
 	return max_number_of_objects;
 }
+
+void Character::dealWithPNJs(Pnj& pnj)
+{
+
+}

@@ -5,6 +5,7 @@
 #include "map.hpp"
 #include "inventory.hpp"
 #include "object.hpp"
+#include "pnj.hpp"
 #define HEIGHT_CHARACTER 19
 #define WIDTH_CHARACTER 12
 
@@ -30,6 +31,7 @@ public:
 	void 					set_x(int new_x);
 	void 					set_y(int new_y);
 	void 					dealWithObjects(Object& object);
+	void 					dealWithPNJs(Pnj& pnj);
 	int 					get_number_of_objects();
 	int 					get_max_number_of_objects();
 

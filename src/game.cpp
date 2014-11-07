@@ -98,11 +98,3 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 {
 	mWorld.handle(key, isPressed);
 }
-
-void Game::dealWithObjects(Object object)
-{
-	if (name_to_immediate(object.get_name()))
-	{
-		
-	}
-}
